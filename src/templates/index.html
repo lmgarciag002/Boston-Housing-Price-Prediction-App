@@ -1,20 +1,78 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Precio Viviendas Boston - Modelo Predictivo</title>
-    </head>
-    <body>
-        <h2>Introducir los valores</h2>
-        <form action="/" method="post">
-            Tasa de Delincuencia per Cápita por Ciudad (CRIM): <input type="number" step="any" name="CRIM" required><br><br>
-            Habitaciones por Vivienda (RM): <input type="number" step="any" name="RM" required><br><br>
-            Distancias Ponderadas a Cinco Centros de Empleo de Boston (DIS): <input type="number" step="any" name="DIS" required><br><br>
-            Población Estatus Socioeconómico Bajo (LSTAT): <input type="number" step="any" name="LSTAT" required><br><br>
-            Edad de la vivienda (AGE): <input type="number" step="any" name="AGE" required><br><br>
-            <input type="submit" value="Predict">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de Precio - Casas Boston</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #2980b9, #6dd5fa);
+            font-family: 'Segoe UI', sans-serif;
+            color: #fdfdfd;
+        }
+        .box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 360px;
+        }
+        h1 {
+            margin-bottom: 25px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: none;
+            font-size: 15px;
+            outline: none;
+        }
+        .btn {
+            background: linear-gradient(45deg, #f12711, #f5af19);
+            color: white;
+            padding: 12px 25px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease-in-out;
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #d12500, #e09f1f);
+        }
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Datos de la Propiedad 🏠</h1>
+        <form method="post" action="/">
+            <input type="number" step="any" name="CRIM" placeholder="Tasa CRIM" required>
+            <input type="number" step="any" name="RM" placeholder="Habitaciones promedio (RM)" required>
+            <input type="number" step="any" name="DIS" placeholder="Distancia a empleo (DIS)" required>
+            <input type="number" step="any" name="LSTAT" placeholder="% bajo estatus (LSTAT)" required>
+            <input type="number" step="any" name="AGE" placeholder="Edad promedio (AGE)" required>
+            <button type="submit" class="btn">Calcular Precio</button>
         </form>
-        {% if prediction != 0 %}
-            <h3>Prediction: {{ prediction }}</h3>
+        {% if prediction is not none %}
+            <div class="resultado">💰 Precio estimado: {{ prediction }}</div>
         {% endif %}
-    </body>
+    </div>
+</body>
 </html>
