@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Precio Viviendas Boston - Modelo Predictivo</title>
+    </head>
+    <body>
+        <h2>Introducir los valores</h2>
+        <form action="/" method="post">
+            Tasa de Delincuencia per Cápita por Ciudad (CRIM): <input type="number" step="any" name="CRIM" required><br><br>
+            Habitaciones por Vivienda (RM): <input type="number" step="any" name="RM" required><br><br>
+            Distancias Ponderadas a Cinco Centros de Empleo de Boston (DIS): <input type="number" step="any" name="DIS" required><br><br>
+            Población Estatus Socioeconómico Bajo (LSTAT): <input type="number" step="any" name="LSTAT" required><br><br>
+            Edad de la vivienda (AGE): <input type="number" step="any" name="AGE" required><br><br>
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction != 0 %}
+            <h3>Prediction: {{ prediction }}</h3>
+        {% endif %}
+    </body>
+</html>
